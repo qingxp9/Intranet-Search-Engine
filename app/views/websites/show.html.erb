@@ -1,0 +1,39 @@
+<%- model_class = Website -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:target) %>:</strong></dt>
+  <dd><%= @website.target %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:port) %>:</strong></dt>
+  <dd><%= @website.port %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:webapp) %>:</strong></dt>
+  <dd><%= @website.webapp %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:http_server) %>:</strong></dt>
+  <dd><%= @website.http_server %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:os) %>:</strong></dt>
+  <dd><%= @website.os %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:headers) %>:</strong></dt>
+  <dd><%= @website.headers %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:title) %>:</strong></dt>
+  <dd><%= @website.title %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:keywords) %>:</strong></dt>
+  <dd><%= @website.keywords %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @website.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:body) %>:</strong></dt>
+  <dd><%= @website.body %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:check_time) %>:</strong></dt>
+  <dd><%= @website.check_time %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              websites_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_website_path(@website), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              website_path(@website),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

@@ -1,0 +1,28 @@
+<%= simple_form_for @website, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :target %>
+  <%= error_span(@website[:target]) %>
+  <%= f.input :port %>
+  <%= error_span(@website[:port]) %>
+  <%= f.input :webapp %>
+  <%= error_span(@website[:webapp]) %>
+  <%= f.input :http_server %>
+  <%= error_span(@website[:http_server]) %>
+  <%= f.input :os %>
+  <%= error_span(@website[:os]) %>
+  <%= f.input :headers %>
+  <%= error_span(@website[:headers]) %>
+  <%= f.input :title %>
+  <%= error_span(@website[:title]) %>
+  <%= f.input :keywords %>
+  <%= error_span(@website[:keywords]) %>
+  <%= f.input :description %>
+  <%= error_span(@website[:description]) %>
+  <%= f.input :body %>
+  <%= error_span(@website[:body]) %>
+  <%= f.input :check_time %>
+  <%= error_span(@website[:check_time]) %>
+
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                websites_path, :class => 'btn btn-default' %>
+<% end %>

@@ -1,4 +1,14 @@
-source 'https://rubygems.org'
+source 'https://ruby.taobao.org'
+
+gem 'devise'
+gem "mongoid", "~> 4.0.0"
+gem 'simple_form'
+gem 'rest-client'
+
+#bootstrap
+gem "therubyracer"
+gem "less-rails"
+gem "twitter-bootstrap-rails"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
