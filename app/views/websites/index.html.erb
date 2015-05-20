@@ -2,18 +2,15 @@
 <div class="page-header">
   <div class="nav-search">
     <%= form_tag search_websites_path, method: 'get' do %>
-    <span class="input-icon">
-      <%= text_field_tag :q, params[:q], placeholder: "Search ...", autocomplete: "off", class: "nav-search-input" %>
-      <i class="ace-icon fa fa-search nav-search-icon"></i>
-    </span>
+        <%= text_field_tag :q, params[:q], placeholder: "Search ...", autocomplete: "off", class: "nav-search-input" %>
     <% end %>
   </div>
+
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:target) %></th>
       <th><%= model_class.human_attribute_name(:port) %></th>
       <th><%= model_class.human_attribute_name(:webapp) %></th>
@@ -31,8 +28,7 @@
   <tbody>
     <% @websites.each do |website| %>
       <tr>
-        <td><%= link_to website.id, website_path(website) %></td>
-        <td><%= website.target %></td>
+        <td><%= link_to website.target, website_path(website) %></td>
         <td><%= website.port %></td>
         <td><%= website.webapp %></td>
         <td><%= website.http_server %></td>

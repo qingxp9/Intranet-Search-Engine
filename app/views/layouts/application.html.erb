@@ -45,12 +45,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">IntranetSearchEngine</a>
+        <a class="navbar-brand" href="<%= root_path %>">IntranetSearchEngine</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Link1", "/path1"  %></li>
-            <li><%= link_to "Link2", "/path2"  %></li>
-            <li><%= link_to "Link3", "/path3"  %></li>
+            <li><%= link_to "主页", root_path  %></li>
+            <li><%= link_to "文档", "/path2"  %></li>
+            <li><%= link_to "关于", "/path3"  %></li>
           </ul>
         </div>
       </div>
@@ -58,10 +58,7 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-9">
-          <%= bootstrap_flash %>
-          <%= yield %>
-        </div>
+        
         <div class="col-lg-3">
           <div class="well sidebar-nav">
             <h3>Sidebar</h3>
@@ -73,6 +70,11 @@
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
+
+        <div class="col-lg-9">
+          <%= bootstrap_flash %>
+          <%= yield %>
+        </div>
       </div><!--/row-->
 
       <footer>
