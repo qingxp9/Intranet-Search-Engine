@@ -1,5 +1,8 @@
 class Website
   include Mongoid::Document
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   field :target, type: String
   field :port, type: String
   field :webapp, type: String
@@ -11,4 +14,8 @@ class Website
   field :description, type: String
   field :body, type: String
   field :check_time, type: DateTime
+
+    def as_indexed_json(options={})
+      as_json(except: [:target, :_id])
+    end
 end

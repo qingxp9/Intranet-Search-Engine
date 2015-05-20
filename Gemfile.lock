@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/elasticsearch/elasticsearch-rails.git
+  revision: 1c43a5331b642a542ac17a11484cb8a382b3f603
+  specs:
+    elasticsearch-model (0.1.7)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-rails (0.1.7)
+
 GEM
   remote: https://ruby.taobao.org/
   specs:
@@ -64,10 +74,21 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
+    elasticsearch (1.0.9)
+      elasticsearch-api (= 1.0.9)
+      elasticsearch-transport (= 1.0.9)
+    elasticsearch-api (1.0.9)
+      multi_json
+    elasticsearch-transport (1.0.9)
+      faraday
+      multi_json
     erubis (2.7.0)
     execjs (2.5.2)
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    hashie (3.4.1)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
@@ -104,6 +125,7 @@ GEM
       connection_pool (~> 2.0)
       optionable (~> 0.2.0)
     multi_json (1.11.0)
+    multipart-post (2.0.0)
     netrc (0.10.3)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
@@ -202,6 +224,8 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise
+  elasticsearch-model!
+  elasticsearch-rails!
   jbuilder (~> 2.0)
   jquery-rails
   less-rails

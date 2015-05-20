@@ -61,6 +61,18 @@ class WebsitesController < ApplicationController
     end
   end
 
+  def search
+    @websites = Website.search(
+      query: {
+        multi_match: {
+          query: params[:q].to_s,
+          fields: ['http_server', 'os', 'title']
+        }
+      }
+    ).records
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_website

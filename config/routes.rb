@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  resources :websites
+
   get 'parse/whatweb_read'
 
   get 'parse/nmap_read'
 
-  resources :websites
+  resources :websites do
+    collection { get :search }
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
