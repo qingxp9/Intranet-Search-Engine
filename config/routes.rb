@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  resources :websites
-
   get 'parse/whatweb_read'
-
   get 'parse/nmap_read'
 
   resources :websites do
