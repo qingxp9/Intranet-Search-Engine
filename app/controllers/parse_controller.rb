@@ -9,8 +9,6 @@ class ParseController < ApplicationController
         #create a new or find the old
         find = Website.where(target: "#{line_hash['target']}").first
         new_website = find ? find : Website.new
-        #get target website http response
-        #http_res = RestClient.get(line_hash['target'])
 
         #save from whatweb_log
         new_website.target = line_hash['target']
@@ -18,11 +16,10 @@ class ParseController < ApplicationController
         new_website.http_server = line_hash['plugins']['HTTPServer']['string']
         new_website.port =URI(line_hash['target']).port
 
-        #save from http response
-        #new_website.body = http_res
-        #new_website.title = $1 if /<title>(.*?)<\/title>/.match(http_res)
-        #new_website.description = $1 if /"description" content="(.*?)"/.match(http_res)
-        #new_website.headers = http_res.headers
+        new_website.headers = line_hash['plugins']['HTTP-Headers']['string']
+        new_website.title = line_hash['plugins']['Title']['string']
+        new_website.keywords = line_hash['plugins']['Meta-Keywords']['string'] if line_hash['plugins']['Meta-Keywords']
+        new_website.description = line_hash['plugins']['Meta-Description']['string'] if line_hash['plugins']['Meta-Description']
 
         new_website.check_time = Time.now
         new_website.save

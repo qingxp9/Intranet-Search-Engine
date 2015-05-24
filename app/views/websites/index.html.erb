@@ -1,11 +1,5 @@
 <%- model_class = Website -%>
 <div class="page-header">
-  <div class="nav-search">
-    <%= form_tag search_websites_path, method: 'get' do %>
-        <%= text_field_tag :q, params[:q], placeholder: "Search ...", autocomplete: "off", class: "nav-search-input" %>
-    <% end %>
-  </div>
-
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
 </div>
 <table class="table table-striped">
@@ -20,7 +14,6 @@
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:keywords) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:body) %></th>
       <th><%= model_class.human_attribute_name(:check_time) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -37,7 +30,6 @@
         <td><%= website.title %></td>
         <td><%= website.keywords %></td>
         <td><%= website.description %></td>
-        <td><%= website.body %></td>
         <td><%= website.check_time %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
