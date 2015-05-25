@@ -17,7 +17,9 @@ class ParseController < ApplicationController
         new_website.http_server = line_hash['plugins']['HTTPServer']['string'].first
         new_website.port =URI(line_hash['target']).port
 
-        new_website.headers = line_hash['plugins']['HTTP-Headers']['string']
+        
+        new_website.headers = get_headers(line_hash['plugins']['HTTP-Headers']['string'])
+
         new_website.title = line_hash['plugins']['Title']['string'].first
         new_website.keywords = line_hash['plugins']['Meta-Keywords']['string'].first.split(',') if line_hash['plugins']['Meta-Keywords']
         new_website.description = line_hash['plugins']['Meta-Description']['string'].first if line_hash['plugins']['Meta-Description']
@@ -39,4 +41,16 @@ class ParseController < ApplicationController
 
   def nmap_read
   end
+
+  private
+
+    def get_headers(array)
+        the_headers = ""
+        array.each do |key,value|
+          the_headers += "#{key}: #{value}\n"
+        end
+
+        the_headers
+    end
+
 end

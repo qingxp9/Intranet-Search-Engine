@@ -55,10 +55,19 @@ body {
     box-sizing: border-box;
 }
 
+.result-list .result h3 {
+  font-size: 18px;
+}
+
 input {
     width: 100%;
     box-shadow: none;
     height: 30px;
+}
+
+input[type=text] {
+    color: #222;
+    padding: 4px 8px;
 }
 
 .mini-search .btn[type="submit"], .home-search .twitter-typeahead .btn[type="submit"], .mini-search .twitter-typeahead .btn[type="submit"] {
@@ -260,7 +269,6 @@ ul, ol {
 }
 
 .aggregation .bar-filter li>span {
-    background: #373737;
     height: 18px;
     float: right;
     z-index: 1;

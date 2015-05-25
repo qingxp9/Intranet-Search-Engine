@@ -2,25 +2,29 @@
 <% websites.each do |website| %>
   <li>
     <h3>
-      <a class="ip"><%= website.ip %></a>
+      <a class="title" href="<%= website.target %>"><%= website.title %></a>
     </h3>
 
     <hr>
     <article class="port">
       <ul class="tags">
+        <li class="ip">
+          <a href=""><%= website.ip %></a>
+        </li>
         <li class="http_server">
-        <a href=""><%= website.http_server %></a>
+          <a href=""><%= website.http_server %></a>
         </li>
         <% if website.os%>
         <li class="os">
-        <a href=""><%= website.os %></a>
+          <a href=""><%= website.os %></a>
         </li>
       <% end %>
       </ul>
-      <br/>
+      <div class="keywords">
+      </div>
       <div class="timestamp">
           <i class="iconfont icon-time"></i>
-          <time datetime=""><%= website.check_time%></time>
+          <span>Added on <%= website.check_time.strftime('%m.%d.%Y')%></span>
       </div>
     </article>
 
@@ -30,7 +34,9 @@
           <s>http</s>
         </header>
         <pre class="expand">
-        <%= website.headers %>
+keywords: <%= website.keywords %>
+
+<%= website.headers %>
         </pre>
     </section>
   </li>

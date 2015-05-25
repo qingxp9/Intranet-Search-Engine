@@ -67,7 +67,7 @@ class WebsitesController < ApplicationController
       query: {
         multi_match: {
           query: params[:q].to_s,
-          fields: ['http_server', 'os', 'title']
+          fields: ['http_server', 'title', 'ip', 'keywords']
         }
       }
     ).records
