@@ -34,8 +34,10 @@
           <s>http</s>
         </header>
         <pre class="expand">
-keywords: <%= website.keywords %>
+<% if website.keywords %>
+keywords: <%= website.keywords  %>
 
+<%end%>
 <%= website.headers %>
         </pre>
     </section>
