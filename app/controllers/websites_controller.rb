@@ -4,7 +4,7 @@ class WebsitesController < ApplicationController
   # GET /websites
   # GET /websites.json
   def index
-    @websites = Website.page(params[:page]).per(2)
+    @websites = Website.page(params[:page]).per(3)
     begin_time = Time.now
     @waste_time = Time.now - begin_time
   end
