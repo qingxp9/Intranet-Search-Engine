@@ -62,6 +62,7 @@ class WebsitesController < ApplicationController
   end
 
   def search
+    begin_time = Time.now
     @websites = Website.search(
       query: {
         multi_match: {
@@ -70,7 +71,7 @@ class WebsitesController < ApplicationController
         }
       }
     ).records
-
+    @waste_time = Time.now - begin_time
   end
 
   private

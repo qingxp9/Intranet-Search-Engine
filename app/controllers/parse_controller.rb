@@ -12,14 +12,15 @@ class ParseController < ApplicationController
 
         #save from whatweb_log
         new_website.target = line_hash['target']
+        new_website.ip = line_hash['plugins']['IP']['string'].first
         new_website.os = line_hash['plugins']['HTTPServer']['os']
-        new_website.http_server = line_hash['plugins']['HTTPServer']['string']
+        new_website.http_server = line_hash['plugins']['HTTPServer']['string'].first
         new_website.port =URI(line_hash['target']).port
 
         new_website.headers = line_hash['plugins']['HTTP-Headers']['string']
-        new_website.title = line_hash['plugins']['Title']['string']
-        new_website.keywords = line_hash['plugins']['Meta-Keywords']['string'] if line_hash['plugins']['Meta-Keywords']
-        new_website.description = line_hash['plugins']['Meta-Description']['string'] if line_hash['plugins']['Meta-Description']
+        new_website.title = line_hash['plugins']['Title']['string'].first
+        new_website.keywords = line_hash['plugins']['Meta-Keywords']['string'].first.split(',') if line_hash['plugins']['Meta-Keywords']
+        new_website.description = line_hash['plugins']['Meta-Description']['string'].first if line_hash['plugins']['Meta-Description']
 
         new_website.check_time = Time.now
         new_website.save

@@ -10,9 +10,9 @@ class Website
   field :os, type: String
   field :headers, type: String
   field :title, type: String
-  field :keywords, type: String
+  field :keywords, type: Array
   field :description, type: String
-  field :body, type: String
+  field :ip, type: String
   field :check_time, type: DateTime
 
     def as_indexed_json(options={})
