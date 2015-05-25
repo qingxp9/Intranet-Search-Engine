@@ -10,7 +10,7 @@
                     <span class="twitter-typeahead">
                       <%= text_field_tag :q, params[:q], placeholder: "Search ...", autocomplete: "off", class: "flex-text tt-input", type: "text" %>
                     </span>
-                      <%= button_tag "搜索一下", class: "btn btn-info btn-default", type: "submit"%>
+                      <%= button_tag "搜索一下", class: "btn btn-info btn-default", type: "submit", name: nil%>
                   <% end %>
                 </div>
             </div>

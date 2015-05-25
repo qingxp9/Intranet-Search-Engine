@@ -2,3 +2,6 @@
   <p>找到<strong><%= @websites.count %></strong>条结果(<%= @waste_time %>秒)
 </div>
 <%= render partial: "shared/websites", locals: { websites: @websites} %>
+
+<div class="clearfix"></div>
+<%= paginate @websites%>

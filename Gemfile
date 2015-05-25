@@ -4,6 +4,7 @@ gem 'devise'
 gem "mongoid", "~> 4.0.0"
 gem 'simple_form'
 gem 'rest-client'
+gem 'kaminari'
 
 #bootstrap
 gem "therubyracer"
