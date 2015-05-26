@@ -2,7 +2,7 @@
 <% websites.each do |website| %>
   <li>
     <h3>
-      <a class="title" href="<%= website.target %>"><%= website.title %></a>
+      <a class="title" href="<%= website.target %>"><%= website.title ? website.title : website.ip %></a>
     </h3>
 
     <hr>
