@@ -31,58 +31,13 @@
   </head>
   <body>
 
-    <div class="narbar-wrapper">
-      <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-              <li><%= link_to "主页", root_path%></li>
-              <li><%= link_to "文档", "#" %></li>
-              <li><%= link_to "关于", "#" %></li>
-               </ul>
-            </div>
-        </div>
-      </nav>
+    <%= render partial: "shared/header" %>
+
+    <div class="content">
+      <%= bootstrap_flash %>
+      <%= yield %>
     </div>
-
-
-    <%= render partial: "shared/mini_search" %>
-
-    <div class="search-results">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-12">
-            <%= render partial: "shared/sidebar" %>
-            <div class="result-list">
-                <%= bootstrap_flash %>
-                <%= yield %>
-            </div>
-          </div>
-        </div><!--/row-->
-      </div> <!-- /container -->
-
-    <footer class="footer" role="contentinfo" style="display: block;">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-5">
-                    <ul class="footer-links muted">
-                        <li>
-                            <a href="#">反馈</a>
-                        </li>
-                        <li>.</li>
-                        <li>
-                            <a href="#">微博</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-sm-7 ">
-                    <p class="copyright">
-                        <a href="#">@ 2015 Company, Inc. .</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <%= render partial: "shared/footer" %>
 
   </body>
 </html>

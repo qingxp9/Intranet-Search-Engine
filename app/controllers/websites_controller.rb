@@ -74,6 +74,9 @@ class WebsitesController < ApplicationController
       }
     ).records.page(params[:page])
     @waste_time = Time.now - begin_time
+
+    render 'index'
+
   end
 
   private

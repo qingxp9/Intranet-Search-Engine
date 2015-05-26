@@ -3,13 +3,13 @@
         <h3 class="filter-title-service">service</h3>
         <ul class="bar-filter filter-service finished">
             <li class="clearfix">
-                <span>1002</span>
-                <a href="#">http</a>
+                <span>3</span>
+                <%= link_to "nginx", controller: 'websites', action: 'search', q: "nginx" %>
             </li>
 
             <li class="clearfix">
-                <span>22</span>
-                <a href="#">ftp</a>
+                <span>2</span>
+                <%= link_to "apache", controller: 'websites', action: 'search', q: "apache" %>
             </li>
         </ul>
     </div>

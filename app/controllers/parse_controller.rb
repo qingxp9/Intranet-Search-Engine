@@ -3,7 +3,7 @@ class ParseController < ApplicationController
     parsed_num = 0
     begintime = Time.now
 
-    File.open('tmp/whatweb_logs/b').each_line do |line|
+    File.open('device_logs/whatweb_logs/*').each_line do |line|
       line_hash = JSON.parse(line)
       if line_hash['http_status'] == 200
         #create a new or find the old
