@@ -7,9 +7,19 @@
         <%= render partial: "shared/sidebar" %>
 
         <div class="result-list">
-           <div class="result-summary">
-             <p>找到<strong><%= @websites.count %></strong>条结果(<%= @waste_time %>秒)
-          </div>
+          <% if @websites.count != 0 %>
+            <div class="result-summary">
+               <p>找到<strong><%= @websites.count %></strong>条结果(<%= @waste_time %>秒)
+            </div>
+          <% else %>
+            <ul class="result web">
+            <div class="info-not-found">
+              <h1 class="text-muted">抱歉，没有找到结果。</h1>
+            <p class="lead">您的查询没有匹配到结果。请尝试检查语法或搜索其他内容。</p>
+            </div>
+            </ul>
+
+          <% end %>
 
           <%= render partial: "shared/websites", locals: { websites: @websites} %>
           <div class="clearfix"></div>

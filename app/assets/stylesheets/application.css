@@ -13,14 +13,21 @@
  *= require_tree .
  *= require_self
  */
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
 
 body {
-    margin: 0;
     background: #131313;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     line-height: 1.42857143;
     color: #c6c6c6;
     font-size: 14px;
+}
+
+html, body {
+  height: 100%;
 }
 
 .navbar-collapse.collapse{
@@ -51,8 +58,11 @@ body {
     min-height: 36px;
 }
 
-* {
-    box-sizing: border-box;
+.content {
+  min-height: 100%;
+  height: auto!important;
+  height: 100%;
+  margin: 0 auto -49px;
 }
 
 .result-list .result h3 {
@@ -155,17 +165,6 @@ span.twitter-typeahead {
 
 a {
     color: #0af;
-}
-
-footer {
-    margin: 0;
-    background: rgba(0,0,0,0.11);
-    border-top: 1px solid #1b1b1b;
-    box-shadow: -1px 0 1px #000;
-    color: #777;
-    font-size: 13px;
-    padding-bottom: 10px;
-    padding-top: 30px;
 }
 
 .result-list {
@@ -451,8 +450,13 @@ ul {
     color: #777;
     display: none;
     font-size: 13px;
-    padding-bottom: 10px;
-    padding-top: 30px;
+    padding-bottom: 5px;
+    padding-top: 15px;
+}
+
+.push {
+  height: 49px;
+  clear: both;
 }
 
 .footer-links {
@@ -479,4 +483,21 @@ ul {
 
 p {
     margin: 0 0 10px;
+}
+
+.home-search {
+    text-align: center;
+}
+
+.home-search .home-title{
+    margin: 150px 0px 50px;
+}
+
+.navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:active {
+  color: #c5c5c5;
+  border-top: 3px solid transparent;
+}
+
+.navbar-nav.navbar-right:last-child {
+  margin-right: 0;
 }
