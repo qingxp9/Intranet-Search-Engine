@@ -3,12 +3,9 @@ Rails.application.routes.draw do
   get 'static_pages/help'
   get 'static_pages/about'
 
-  get 'parse/whatweb_read'
-  get 'parse/nmap_read'
+  get 'search' => 'websites#search'
 
-  resources :websites do
-    collection { get :search }
-  end
+  resources :websites
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
