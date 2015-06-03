@@ -4,7 +4,7 @@ class WebsitesController < ApplicationController
   # GET /websites
   # GET /websites.json
   def index
-    @websites = Website.page(params[:page]).per(3)
+    @websites = Website.page(params[:page]).per(10)
     begin_time = Time.now
     @waste_time = Time.now - begin_time
   end
@@ -72,7 +72,7 @@ class WebsitesController < ApplicationController
           fields: ['http_server', 'title', 'ip', 'keywords', 'os', 'ip', 'target', 'description']
         }
       }
-    ).records.page(params[:page])
+    ).records.page(params[:page]).per(10)
     @waste_time = Time.now - begin_time
 
     render 'index'
