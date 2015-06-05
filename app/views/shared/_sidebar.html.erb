@@ -3,12 +3,12 @@
         <h3 class="filter-title-service">service</h3>
         <ul class="bar-filter filter-service finished">
             <li class="clearfix">
-                <span>3</span>
+            <span><%= Redis.new.get 'nginx' %></span>
                 <%= link_to "nginx", controller: 'websites', action: 'search', q: "nginx" %>
             </li>
 
             <li class="clearfix">
-                <span>2</span>
+                <span><%= Redis.new.get 'apache' %></span>
                 <%= link_to "apache", controller: 'websites', action: 'search', q: "apache" %>
             </li>
         </ul>
