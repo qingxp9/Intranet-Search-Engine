@@ -27,7 +27,11 @@ Configure Elasticsearch to automatically start during bootup:
 
     sudo update-rc.d elasticsearch defaults 95 10
 
-###4.[WhatWEB][1]
+###4.Redis
+
+    sudo apt-get install redis-server
+
+###5.[WhatWEB][1]
 
     $ cd ~ && git clone https://github.com/urbanadventurer/WhatWeb
 

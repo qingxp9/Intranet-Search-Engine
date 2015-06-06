@@ -21,3 +21,8 @@ set :environment, :development
 every 1.days, :at => '0:00 am' do
   rake "whatweb:scan"
 end
+
+every :hour do
+  rake "app_count:calculate"
+end
+end
