@@ -1,10 +1,13 @@
 #Intranet Search Engine
 
-Its goal is to help people to find all webservice in intranet.We make this Web application based on Ruby On Rails.  
+Its goal is to help people to find all webservice in intranet.It likes Shodanhq or Zoomeye but aim at intranet.
 ![about_root][1]
 
 ![about_search][2]
+
+----
 ##Installation
+We make it based on Ruby On Rails.  
 ### 1.Rails and Ruby
 Using **rvm** to install them:
 
