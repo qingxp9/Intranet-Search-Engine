@@ -1,7 +1,9 @@
 #Intranet Search Engine
 
 Its goal is to help people to find all webservice in intranet.We make this Web application based on Ruby On Rails.  
+![about_root][1]
 
+![about_search][2]
 ##Installation
 ### 1.Rails and Ruby
 Using **rvm** to install them:
@@ -26,12 +28,12 @@ Add the repository definition to your */etc/apt/sources.list file*:
 Configure Elasticsearch to automatically start during bootup:
 
     sudo update-rc.d elasticsearch defaults 95 10
-
+    
 ###4.Redis
 
-    sudo apt-get install redis-server
+    sudo apt-get install redis-server   
 
-###5.[WhatWEB][1]
+###5.[WhatWEB][3]
 
     $ cd ~ && git clone https://github.com/urbanadventurer/WhatWeb
 
@@ -65,4 +67,6 @@ at root directory
 > You can change **scan time** in *config/schedule.rb* ,and redo whenever.
 
 
-  [1]: https://github.com/urbanadventurer/WhatWeb
+  [1]: https://raw.githubusercontent.com/qingxp9/Intranet-Search-Engine/master/public/about_root.png
+  [2]: https://raw.githubusercontent.com/qingxp9/Intranet-Search-Engine/master/public/about_search.png
+  [3]: https://github.com/urbanadventurer/WhatWeb
