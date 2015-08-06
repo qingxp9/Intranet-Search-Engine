@@ -69,7 +69,7 @@ class WebsitesController < ApplicationController
       query: {
         multi_match: {
           query: params[:q].to_s,
-          fields: ['http_server', 'title', 'ip', 'keywords', 'os', 'ip', 'target', 'description']
+          fields: ['server', 'title', 'ip', 'keywords', 'os', 'ip', 'target', 'description']
         }
       }
     ).records.page(params[:page]).per(10)
@@ -87,6 +87,6 @@ class WebsitesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def website_params
-      params.require(:website).permit(:target, :port, :webapp, :http_server, :os, :headers, :title, :keywords, :description, :body, :check_time)
+      params.require(:website).permit(:target, :port, :webapp, :server, :os, :headers, :title, :keywords, :description, :body, :check_time)
     end
 end

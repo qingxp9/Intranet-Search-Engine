@@ -6,8 +6,9 @@ class Website
   field :target, type: String
   field :port, type: String
   field :webapp, type: String
-  field :http_server, type: String, default: "Unknown"
+  field :server, type: String, default: "Unknown"
   field :os, type: String
+  field :frontend, type: String
   field :headers, type: String
   field :title, type: String
   field :keywords, type: Array
@@ -33,7 +34,7 @@ class Website
         new_website.target = line_hash['target']
         new_website.ip = line_hash['plugins']['IP']['string'].first 
         new_website.os = line_hash['plugins']['HTTPServer']['os'].first if line_hash['plugins']['HTTPServer'] and line_hash['plugins']['HTTPServer']['os']
-        new_website.http_server = line_hash['plugins']['HTTPServer']['string'].first if line_hash['plugins']['HTTPServer']
+        new_website.server = line_hash['plugins']['HTTPServer']['string'].first if line_hash['plugins']['HTTPServer']
         new_website.port =URI(line_hash['target']).port
         new_website.headers = get_headers(line_hash['plugins']['HTTP-Headers']['string'])
         new_website.title = line_hash['plugins']['Title']['string'].first if line_hash['plugins']['Title']

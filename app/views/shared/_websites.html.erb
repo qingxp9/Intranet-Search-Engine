@@ -11,9 +11,11 @@
         <li class="ip">
           <a href=""><%= website.ip %></a>
         </li>
-        <li class="http_server">
-          <a href=""><%= website.http_server %></a>
+        <% if website.server != "Unknown" %>
+        <li class="server">
+          <a href=""><%= website.server %></a>
         </li>
+        <% end %>
         <% if website.os%>
         <li class="os">
           <a href=""><%= website.os %></a>
@@ -34,11 +36,11 @@
           <s>http</s>
         </header>
         <pre class="expand">
-<% if website.keywords %>
-keywords: <%= website.keywords  %>
+          <% if website.keywords %>
+            keywords: <%= website.keywords  %>
+          <%end%>
 
-<%end%>
-<%= website.headers %>
+          <%= website.headers %>
         </pre>
     </section>
   </li>

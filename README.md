@@ -28,9 +28,19 @@ Add the repository definition to your */etc/apt/sources.list file*:
 
     echo "deb http://packages.elastic.co/elasticsearch/1.5/debian stable main" | sudo tee -a /etc/apt/sources.list
     sudo apt-get update && sudo apt-get install elasticsearch
+
+Start it
+
+    sudo service elasticsearch start
+
 Configure Elasticsearch to automatically start during bootup:
 
     sudo update-rc.d elasticsearch defaults 95 10
+
+execute:
+
+    rake environment elasticsearch:import:model CLASS='Website' FORCE=y
+
     
 ###4.Redis
 
