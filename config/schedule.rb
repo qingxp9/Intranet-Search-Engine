@@ -19,10 +19,10 @@
 # Learn more: http://github.com/javan/whenever
 set :environment, :development
 every 1.days, :at => '0:00 am' do
-  rake "whatweb:scan"
+  rake "scan:whatweb_scan"
 end
 
-every :hour do
-  rake "app_count:calculate"
-end
+#every :hour do
+#  rake "app_count:calculate"
+#end
 end
