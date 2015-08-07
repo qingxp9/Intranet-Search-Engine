@@ -24,7 +24,7 @@ class Website
       parsed_num = 0
       begintime = Time.now
 
-      File.open("#{WHATWEB_SAVE_PATH}/#{Time.now.strftime("%Y%m%d")}.log").each_line do |line|
+      File.open("#{WHATWEB_LOG_PATH}/#{Time.now.strftime("%Y%m%d")}.log").each_line do |line|
         line_hash = JSON.parse(line)
         #create a new or find the old
         find = Website.where(target: "#{line_hash['target']}").first
