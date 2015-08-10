@@ -9,6 +9,10 @@ class Host
   field :banner, type: String
   field :title, type: String
 
+  def as_indexed_json(options={})
+    as_json(only: [:ip, :port])
+  end
+
   def self.zmap_read
     parsed_num = 0
     begintime = Time.now
@@ -17,10 +21,10 @@ class Host
       /\d*-(\d+).log/ =~ log
       port = $1
 
-      File.readlines(log)[0..2].each do |line|
+      File.readlines(log)[0..-2].each do |line|
         line_hash = JSON.parse line
         next if line_hash["error"]
-        find = Host.where(ip: line_hash["ip"], port: port)
+        find = Host.where(ip: line_hash["ip"], port: port).first
         host = find ? find : Host.new
 
         host.ip = line_hash["ip"]
