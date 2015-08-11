@@ -1,0 +1,31 @@
+<%= render partial: "shared/mini_search" %>
+
+<div class="search-results">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <%= render partial: "shared/sidebar" %>
+
+        <div class="result-list">
+          <% if @hosts.count != 0 %>
+            <div class="result-summary">
+               <p>找到<strong><%= @hosts.count %></strong>条结果(<%= @waste_time %>秒)
+            </div>
+          <% else %>
+            <ul class="result web">
+            <div class="info-not-found">
+              <h1 class="text-muted">抱歉，没有找到结果。</h1>
+            <p class="lead">您的查询没有匹配到结果。请尝试检查语法或搜索其他内容。</p>
+            </div>
+            </ul>
+
+          <% end %>
+
+          <%= render partial: "shared/hosts", locals: { hosts: @hosts} %>
+          <div class="clearfix"></div>
+          <%= paginate @hosts %>
+        </div>
+      </div>
+    </div><!--/row-->
+  </div> <!-- /container -->
+</div>
