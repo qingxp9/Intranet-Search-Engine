@@ -39,14 +39,14 @@ Configure Elasticsearch to automatically start during bootup:
 
 execute:
 
-    rake environment elasticsearch:import:model CLASS='Website' FORCE=y
+    rake environment elasticsearch:import:all
 
     
 ###4.Redis
 
     sudo apt-get install redis-server   
 
-###5.[WhatWEB][3]
+###5.[WhatWeb][3]
 
     $ cd ~ && git clone https://github.com/urbanadventurer/WhatWeb
 
@@ -74,7 +74,7 @@ if you don't see any errors,you can view the website at http://127.0.0.1:3000
 ###Scheduled scans
 at root directory
 
-    $ whenever -iwhatwebscan
+    $ whenever -iscan
     [write] crontab file updated
 
 > You can change **scan time** in *config/schedule.rb* ,and redo whenever.

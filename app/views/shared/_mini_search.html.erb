@@ -6,7 +6,7 @@
                     <img class="logo-sm" src="" alt="Intranet Search Engine">
                 </a>
                 <div class="bar">
-                  <%= form_tag search_path, method: 'get',class: "ultra-form" do %>
+                  <%= form_tag (@hosts ? hosts_search_path : websites_search_path), method: 'get',class: "ultra-form" do %>
                     <span class="twitter-typeahead">
                       <%= text_field_tag :q, params[:q], placeholder: "Search ...", autocomplete: "off", class: "flex-text tt-input", type: "text" %>
                     </span>

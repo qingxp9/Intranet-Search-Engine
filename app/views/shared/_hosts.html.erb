@@ -1,0 +1,37 @@
+<ul class="result device">
+<% hosts.each do |host| %>
+  <li>
+    <h3>
+      <a class="title" href="http://<%= host.ip %>"><%= host.title ? host.title : host.ip %></a>
+    </h3>
+
+    <hr>
+    <article class="port">
+      <ul class="tags">
+        <li class="ip">
+          <a href=""><%= host.ip %></a>
+        </li>
+        <% if host.server != "Unknown" %>
+        <li class="server">
+          <a href=""><%= host.server %></a>
+        </li>
+        <% end %>
+      </ul>
+      <div class="timestamp">
+          <i class="iconfont icon-time"></i>
+          <span>Added on <%= host.check_time.strftime('%m.%d.%Y')%></span>
+      </div>
+    </article>
+
+    <section class="banner">
+        <header>
+          <i><%= host.port %></i>
+          <s>http</s>
+        </header>
+        <pre class="expand">
+<%= host.banner %>
+        </pre>
+    </section>
+  </li>
+<% end %>
+</ul>

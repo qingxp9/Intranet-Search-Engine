@@ -5,19 +5,19 @@ class Host
   field :ip, type: String
   field :port, type: String
   field :check_time, type: DateTime
-  field :server, type: String
+  field :server, type: String, default: "Unknown"
   field :banner, type: String
   field :title, type: String
 
   def as_indexed_json(options={})
-    as_json(only: [:ip, :port])
+    as_json(only: [:ip, :port, :server, :title])
   end
 
   def self.zmap_read
     parsed_num = 0
     begintime = Time.now
 
-    Dir.glob("#{ZMAP_LOG_PATH}/#{Time.now.strftime("%Y%m%d%H")}-*.log").each do |log|
+    Dir.glob("#{ZMAP_LOG_PATH}/#{Time.now.strftime("%Y%m%d")}-*.log").each do |log|
       /\d*-(\d+).log/ =~ log
       port = $1
 
