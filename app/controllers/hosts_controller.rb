@@ -10,25 +10,27 @@ class HostsController < ApplicationController
 
   def search
     begin_time = Time.now
-    @hosts = Host.search(
-      size: 500,
-      query: {
-        multi_match: {
-          query: params[:q].to_s,
-          fields: ['server', 'title', 'ip', 'banner'],
-          fuzziness: 1
-        }
-      }
-    ).records.page(params[:page]).per(30)
+    @hosts = Host.search params[:q]
     @waste_time = Time.now - begin_time
-
     render 'index'
-
   end
 
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def host_params
       params.require(:host).permit(:ip, :port, :server, :banner, :title )
+    end
+
+    def self.search(query)
+      __elasticsearch__.search(
+        {
+          query: {
+            multi_match: {
+              query: query,
+              fields: ['server', 'title', 'ip', 'banner']
+            }
+          }
+        }
+      )
     end
 end

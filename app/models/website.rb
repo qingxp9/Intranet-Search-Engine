@@ -6,7 +6,7 @@ class Website
   field :target, type: String
   field :port, type: String
   field :webapp, type: String
-  field :server, type: String, default: "Unknown"
+  field :server, type: String
   field :os, type: String
   field :frontend, type: String
   field :headers, type: String
