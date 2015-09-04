@@ -40,6 +40,7 @@ class Host
 
         host.save
         parsed_num += 1
+        puts parsed_num if parsed_num % 100 == 0
       end
     end
 

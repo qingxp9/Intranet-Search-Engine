@@ -10,7 +10,7 @@ class HostsController < ApplicationController
 
   def search
     begin_time = Time.now
-    @hosts = Host.search params[:q]
+    @hosts = Host.search(params[:q]).records.page(params[:page]).per(30)
     @waste_time = Time.now - begin_time
     render 'index'
   end
@@ -24,6 +24,7 @@ class HostsController < ApplicationController
     def self.search(query)
       __elasticsearch__.search(
         {
+          size: 50,
           query: {
             multi_match: {
               query: query,
