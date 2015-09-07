@@ -76,27 +76,16 @@ class Host
      end
     end
 
-    tmp = {
-            size: 50,
-            query: {
-              bool: {
-                should: should_list,
-                must: must_list
-              }
-            },
-            highlight: {
-              pre_tags: ['<em>'],
-              post_tags: ['</em>'],
-              fields: {
-                title: {},
-                ip: {},
-                banner: {},
-                server: {}
-              }
-            }
+    tmp ={
+        size: 50,
+        query: {
+          bool: {
+            should: should_list,
+            must: must_list
           }
+        }
+      }
 
     __elasticsearch__.search(tmp)
-
   end
 end

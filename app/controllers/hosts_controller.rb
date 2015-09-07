@@ -21,17 +21,4 @@ class HostsController < ApplicationController
       params.require(:host).permit(:ip, :port, :server, :banner, :title )
     end
 
-    def self.search(query)
-      __elasticsearch__.search(
-        {
-          size: 50,
-          query: {
-            multi_match: {
-              query: query,
-              fields: ['server', 'title', 'ip', 'banner']
-            }
-          }
-        }
-      )
-    end
 end

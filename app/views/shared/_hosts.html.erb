@@ -2,7 +2,7 @@
 <% hosts.each do |host| %>
   <li>
     <h3>
-      <a class="title" href="http://<%= host.ip %>"><%= host.title ? host.title : host.ip %></a>
+      <a class="title" href="http://<%= host.ip %>"><%= host.try(:highlight).try(:title) ? host.highlight.title[0] : host.title %></a>
     </h3>
 
     <hr>
@@ -13,7 +13,7 @@
         </li>
         <% if host.server %>
         <li class="server">
-          <a href=""><%= host.server %></a>
+          <a href=""><%= host.try(:highlight).try(:server) ? host.highlight.server[0] : host.server %></a>
         </li>
         <% end %>
       </ul>
