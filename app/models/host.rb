@@ -22,16 +22,23 @@ class Host
       port = $1
 
       File.readlines(log).each do |line|
-        line_hash = JSON.parse line
+        begin
+          line_hash = JSON.parse line
+        rescue
+          next
+        end
+
         next if line_hash["error"]
+
+        #find a old one
         find = Host.where(ip: line_hash["ip"], port: port).first
         host = find ? find : Host.new
 
         host.ip = line_hash["ip"]
         host.port = port
         host.check_time = Time.now
-
         host.banner = line_hash["data"]["read"]
+
         #Regular identify
         /Server:(.*?)\r\n/ =~ host.banner
         host.server = $1
@@ -39,12 +46,15 @@ class Host
         host.title = $1
 
         host.save
+
+        #output the process number
         parsed_num += 1
         puts parsed_num if parsed_num % 100 == 0
       end
     end
 
     tastetime = Time.now() - begintime
+    puts "cost time #{tastetime}"
   end
 
   def self.search(query)
