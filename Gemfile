@@ -10,7 +10,7 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 
 
-gem 'redis'
+#gem 'redis'
 gem "mongoid", "~> 4.0.0"
 gem "whenever", :require => false
 gem 'simple_form'

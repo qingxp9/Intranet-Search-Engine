@@ -4,10 +4,6 @@ require File.expand_path('../application', __FILE__)
 # Initialize the Rails application.
 Rails.application.initialize!
 
-# define your locate WhatWeb path
-WHATWEB_PATH="/home/qingxp9/program/WhatWeb"
-WHATWEB_LOG_PATH="log/whatweb_logs"
-WHATWEB_PLUGES="#{WHATWEB_PATH}/my-plugins"
 
 ZMAP_LOG_PATH="log/zmap_logs"
 

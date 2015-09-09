@@ -7,26 +7,26 @@ Its goal is to help people to find all webservice in intranet.It likes Shodanhq 
 
 ----
 ##Installation
-We make it based on Ruby On Rails.  
+We make it based on Ruby On Rails.
 ### 1.Rails and Ruby
 Using **rvm** to install them:
 
     gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-    
-    curl -sSL https://get.rvm.io | bash -s stable --rails 
+
+    curl -sSL https://get.rvm.io | bash -s stable --rails
 
 
 ###2.Mongodb
-    sudo apt-get install mongodb  
+    sudo apt-get install mongodb
 
 ###3.ElasticSearch
-Download and install the Public Signing Key 
+Download and install the Public Signing Key
 
     wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -
 
 Add the repository definition to your */etc/apt/sources.list file*:
 
-    echo "deb http://packages.elastic.co/elasticsearch/1.5/debian stable main" | sudo tee -a /etc/apt/sources.list
+    echo "deb http://packages.elastic.co/elasticsearch/1.7/debian stable main" | sudo tee -a /etc/apt/sources.list
     sudo apt-get update && sudo apt-get install elasticsearch
 
 Start it
@@ -39,12 +39,8 @@ Configure Elasticsearch to automatically start during bootup:
 
 execute:
 
-    rake environment elasticsearch:import:all
+    rake environment elasticsearch:import:all -y
 
-    
-###4.Redis
-
-    sudo apt-get install redis-server   
 
 ###5.[WhatWeb][3]
 
@@ -60,16 +56,16 @@ and set your target intranet ip
 
     #Separated by Spaces,such as "127.0.0.1-100 192.168.1.1 192.168.0.0/24"
     TARGET_RANGE = "127.0.0.1"
-    
+
 
 ## Run Server
-    
+
 at the root directory,run:
 
     bundle install
     rails server
 
-if you don't see any errors,you can view the website at http://127.0.0.1:3000 
+if you don't see any errors,you can view the website at http://127.0.0.1:3000
 
 ###Scheduled scans
 at root directory
