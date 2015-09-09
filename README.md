@@ -41,6 +41,14 @@ execute:
 
     rake environment elasticsearch:import:all -y
 
+###4.ZMap
+
+    sudo apt-get install zmap
+
+If you don't want to run ZMap as root, you can give the binary permission to use the raw network with
+
+    setcap cap_net_raw=ep /usr/local/sbin/zmap
+
 
 ###5.[WhatWeb][3]
 
