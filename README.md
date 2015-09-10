@@ -26,7 +26,7 @@ Download and install the Public Signing Key
 
 Add the repository definition to your */etc/apt/sources.list file*:
 
-    echo "deb http://packages.elastic.co/elasticsearch/1.7/debian stable main" | sudo tee -a /etc/apt/sources.list
+    echo "deb http://packages.elastic.co/elasticsearch/1.5/debian stable main" | sudo tee -a /etc/apt/sources.list
     sudo apt-get update && sudo apt-get install elasticsearch
 
 Start it
@@ -39,7 +39,8 @@ Configure Elasticsearch to automatically start during bootup:
 
 execute:
 
-    rake environment elasticsearch:import:all -y
+    rake environment elasticsearch:import:all
+
 
 ###4.ZMap
 
@@ -48,23 +49,6 @@ execute:
 If you don't want to run ZMap as root, you can give the binary permission to use the raw network with
 
     setcap cap_net_raw=ep /usr/local/sbin/zmap
-
-
-###5.[WhatWeb][3]
-
-    $ cd ~ && git clone https://github.com/urbanadventurer/WhatWeb
-
-> you should copy your wanted plugins into WhatWeb/my-plugins,I have add these from plugins-disabled: *http-headers meta-description meta-keywords title*
-
-Then set your Whatweb_path in *config/environment*.rb
-
-    WHATWEB_PATH = "/home/xxxxx/WhatWeb"
-
-and set your target intranet ip
-
-    #Separated by Spaces,such as "127.0.0.1-100 192.168.1.1 192.168.0.0/24"
-    TARGET_RANGE = "127.0.0.1"
-
 
 ## Run Server
 
