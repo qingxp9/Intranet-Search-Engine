@@ -123,10 +123,17 @@ div {
 }
 
 .logo-sm {
-    height: 40px;
+    height: 100px;
     max-width: 100%;
-    margin: 10px 80px 10px 10px;
-    width: 120px;
+    margin: 0px 80px 0px 10px;
+    width: 100px;
+}
+
+.logo {
+    height: 200px;
+    max-width: 100%;
+    margin: 0px 30px 0px 10px;
+    width: 200px;
 }
 
 img {
@@ -137,7 +144,7 @@ img {
 }
 
 .mini-search .bar {
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
 .mini-search .twitter-typeahead, .mini-search form>input {
@@ -490,7 +497,7 @@ p {
 }
 
 .home-search .home-title{
-    margin: 150px 0px 50px;
+    margin: 150px 200px 50px 0px;
 }
 
 .navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:active {
