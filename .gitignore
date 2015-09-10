@@ -8,12 +8,10 @@
 /.bundle
 
 # Ignore all logfiles and tempfiles.
-/log/**.log
-/log/*.log
+/log/**/*.log
+/log/**/*.json
 
 !/log/.keep
 /tmp
 
 **/*~
-
-/device_logs
