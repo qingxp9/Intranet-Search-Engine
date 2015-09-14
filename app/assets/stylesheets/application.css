@@ -130,10 +130,10 @@ div {
 }
 
 .logo {
-    height: 200px;
+    height: 250px;
     max-width: 100%;
     margin: 0px 30px 0px 10px;
-    width: 200px;
+    width: 250px;
 }
 
 img {
@@ -498,6 +498,11 @@ p {
 
 .home-search .home-title{
     margin: 150px 0px 50px 0px;
+}
+
+#pegasus {
+    margin: 130px 0px 50px 0px;
+    font-size: 20px;
 }
 
 .navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-nav>li>a:hover, .navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:active {
