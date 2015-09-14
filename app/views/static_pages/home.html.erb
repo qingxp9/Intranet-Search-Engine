@@ -1,15 +1,14 @@
 <div class="home-search">
     <div class="container">
       <h1 class="home-title">
-        <img class="logo" src="/logo1.jpg" alt="Intranet Search Engine">
-        yyfScanner V1
+        <img class="logo" src="/logo_yyf.png" alt="Intranet Search Engine">
       </h1>
         <div class="home-search">
             <%= form_tag hosts_search_path, method:"get" do %>
                 <span class="twitter-typeahead" style="position: relative; display: inline-block; direction: ltr;">
                   <%= text_field_tag :q, params[:q], placeholder: "nginx", autocomplete: "off", autofocus:"autofocus",  class: "flex-text tt-input", type: "text", style: "position: relative; vertical-align: top;", value: "nginx" %>
                 </span>
-                <%= button_tag "搜索一下", class: "btn btn-info", type: "submit", name: nil%>
+                <%= button_tag "Search", class: "btn btn-info", type: "submit", name: nil%>
               <% end %>
         </div>
     </div>
