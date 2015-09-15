@@ -1,10 +1,16 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+  mount Sidekiq::Web => '/sidekiq'
+
   get 'static_pages/home'
   get 'static_pages/help'
   get 'static_pages/about'
 
   get 'websites/search' => 'websites#search'
   get 'hosts/search' => 'hosts#search'
+
+  get 'hosts/yyf' => 'hosts#yyf'
 
   resources :websites
   resources :hosts

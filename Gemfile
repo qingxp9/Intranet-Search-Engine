@@ -10,6 +10,10 @@ gem "less-rails"
 gem "twitter-bootstrap-rails"
 
 
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
+
 gem 'redis'
 gem "mongoid", "~> 4.0.0"
 gem "whenever", :require => false

@@ -57,6 +57,15 @@ class Host
     puts "cost time #{tastetime}"
   end
 
+  def self.yyf
+    target_name = "outer"
+    target_ip = ["10.18.25.0/24"]
+    ports = [ 22,80 ]
+    ZmapWorkerJob.perform_now(
+      target_name, target_ip, ports
+    )
+  end
+
   def self.search(query)
     should_list = []
     must_list = []

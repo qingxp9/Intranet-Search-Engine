@@ -15,6 +15,15 @@ class HostsController < ApplicationController
     render 'index'
   end
 
+  def yyf
+    target_name = "outer"
+    target_ip = ["10.0.0.1/24"]
+    ports = [ 22,80 ]
+    ZmapWorkerJob.perform_later(
+      target_name, target_ip, ports
+    )
+  end
+
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def host_params
