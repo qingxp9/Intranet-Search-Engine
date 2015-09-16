@@ -1,0 +1,16 @@
+<div class="yyf">
+    <div class="container">
+      <%= form_tag cpanel_zmap_path, method: "post" do%>
+        <%= label_tag(:name, "Target Name:") %>
+        <%= text_field_tag(:name) %>
+
+        <%= label_tag(:ip, "Target IP:") %>
+        <%= text_field_tag(:ip) %>
+
+        <%= label_tag(:port, "Target Port:") %>
+        <%= text_field_tag(:port) %>
+
+        <%= button_tag "Submit" %>
+      <% end %>
+    </div>
+</div>
