@@ -6,22 +6,17 @@ class Host
   field :port, type: String
   field :check_time, type: DateTime
   field :server, type: String
-  field :banner, type: String
   field :title, type: String
 
   def as_indexed_json(options={})
-    as_json(only: [:ip, :port, :server, :title, :banner])
+    as_json(only: [:ip, :port, :server, :title])
   end
 
-  def self.zmap_read
+  def self.zmap_read(filepath, port)
     parsed_num = 0
     begintime = Time.now
 
-    Dir.glob("#{ZMAP_LOG_PATH}/#{Time.now.strftime("%Y%m%d")}-*.*").each do |log|
-      /-(\d+)\.\w+$/ =~ log
-      port = $1
-
-      File.readlines(log).each do |line|
+      File.readlines(filepath).each do |line|
         begin
           line_hash = JSON.parse line
         rescue
@@ -37,12 +32,12 @@ class Host
         host.ip = line_hash["ip"]
         host.port = port
         host.check_time = Time.now
-        host.banner = line_hash["data"]["read"]
+        banner = line_hash["data"]["read"]
 
         #Regular identify
-        /Server:(.*?)\r\n/ =~ host.banner
+        /Server:(.*?)\r\n/ =~ banner
         host.server = $1
-        /<title>(.*?)<\/title>/ =~ host.banner
+        /<title>(.*?)<\/title>/ =~ banner
         host.title = $1
 
         host.save
@@ -51,7 +46,6 @@ class Host
         parsed_num += 1
         puts parsed_num if parsed_num % 100 == 0
       end
-    end
 
     tastetime = Time.now() - begintime
     puts "cost time #{tastetime}"
