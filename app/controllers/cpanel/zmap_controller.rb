@@ -10,7 +10,7 @@ module Cpanel
 
 
       ports.each do |port|
-        filename = "#{Time.now.strftime('%Y%m%d')}-#{name}-#{rand(10000...100000)}-#{port}.log"
+        filename = "#{Time.now.strftime('%Y%m%d')}-#{target_name}-#{rand(10000...100000)}-#{port}.log"
 
         ZmapWorkerJob.perform_later(
           target_name, target_ip, port, filename

@@ -49,6 +49,7 @@ class Host
 
     tastetime = Time.now() - begintime
     puts "cost time #{tastetime}"
+    puts parsed_num
   end
 
   def self.search(query)
