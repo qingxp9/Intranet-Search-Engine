@@ -4,7 +4,8 @@ module Cpanel
     end
 
     def scan
-      target_name = params[:name]? params[:name] : "outer"
+      @scan_task = ScanTask.new
+      desc = params[:desc]? params[:desc] : "outer"
       target_ip   = params[:ip].sub(","," ")
       ports       = params[:port].split(/[,| ]/)
 
@@ -12,8 +13,8 @@ module Cpanel
       ports.each do |port|
         filename = "#{Time.now.strftime('%Y%m%d')}-#{target_name}-#{rand(10000...100000)}-#{port}.log"
 
-        ZmapWorkerJob.perform_later(
-          target_name, target_ip, port, filename
+        ZmapWorkerJob.perform_async(
+          desc, target_ip, port, filename
         )
       end
 

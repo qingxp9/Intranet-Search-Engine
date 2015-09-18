@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+
   mount Sidekiq::Web => '/sidekiq'
 
   root 'static_pages#home'
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
     root 'home#index'
     get 'zmap' => 'zmap#index'
     post 'zmap' => 'zmap#scan'
+    resources :scan_tasks
   end
 
   resources :hosts do

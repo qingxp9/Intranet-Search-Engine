@@ -1,16 +1,35 @@
-<div class="yyf">
-    <div class="container">
-      <%= form_tag cpanel_zmap_path, method: "post" do%>
-        <%= label_tag(:name, "Target Name:") %>
-        <%= text_field_tag(:name) %>
+<div class="container">
+  <h1>ZMAP 搜索任务</h1>
+  <hr>
 
-        <%= label_tag(:ip, "Target IP:") %>
-        <%= text_field_tag(:ip) %>
+  <table>
+    <thead>
+      <tr>
+        <th>Targets</th>
+        <th>Ports</th>
+        <th>Describe</th>
+        <th>Time</th>
+        <th>Output</th>
+        <th>Status</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
 
-        <%= label_tag(:port, "Target Port:") %>
-        <%= text_field_tag(:port) %>
-
-        <%= button_tag "Submit" %>
+    <tbody>
+      <% @scan_tasks.each do |scan_task| %>
+        <tr>
+          <td><%= scan_task.targets %></td>
+          <td><%= scan_task.ports %></td>
+          <td><%= scan_task.describe %></td>
+          <td><%= scan_task.time %></td>
+          <td><%= scan_task.output %></td>
+          <td><%= scan_task.status %></td>
+          <td><%= link_to 'Show', scan_task %></td>
+          <td><%= link_to 'Edit', edit_cpanel_scan_task_path(scan_task) %></td>
+          <td><%= link_to 'Destroy', scan_task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
       <% end %>
-    </div>
+    </tbody>
+  </table>
+
 </div>

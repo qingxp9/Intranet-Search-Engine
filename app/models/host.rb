@@ -7,6 +7,7 @@ class Host
   field :check_time, type: DateTime
   field :server, type: String
   field :title, type: String
+  field :banner, type: String
 
   def as_indexed_json(options={})
     as_json(only: [:ip, :port, :server, :title])

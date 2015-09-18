@@ -1,0 +1,10 @@
+<%= simple_form_for([:cpanel,@scan_task]) do |f| %>
+  <%= f.error_notification %>
+
+    <%= f.input :targets, placeholder: "10.0.1.1,192.168.10.0/24"%>
+    <%= f.input :ports, placeholder: "22,80"%>
+    <%= f.input :describe, placeholder: "外网留空" %>
+
+    <%= f.button :button, class: "btn btn-info" %>
+<% end %>
+

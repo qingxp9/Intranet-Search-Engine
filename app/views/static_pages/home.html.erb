@@ -6,7 +6,7 @@
         <div class="home-search">
             <%= form_tag search_hosts_path, method:"get" do %>
                 <span class="twitter-typeahead" style="position: relative; display: inline-block; direction: ltr;">
-                  <%= text_field_tag :q, params[:q], placeholder: "nginx", autocomplete: "off", autofocus:"autofocus",  class: "flex-text tt-input", type: "text", style: "position: relative; vertical-align: top;", value: "nginx" %>
+                  <%= text_field_tag :q, nil, { placeholder: "nginx", autofocus:"autofocus",  class: "flex-text tt-input", style: "position: relative; vertical-align: top;"} %>
                 </span>
                 <%= button_tag "Search", class: "btn btn-info", type: "submit", name: nil%>
               <% end %>
