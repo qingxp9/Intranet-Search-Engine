@@ -33,12 +33,12 @@ class Host
         host.ip = line_hash["ip"]
         host.port = port
         host.check_time = Time.now
-        banner = line_hash["data"]["read"]
+        host.banner = line_hash["data"]["read"]
 
         #Regular identify
-        /Server:(.*?)\r\n/ =~ banner
+        /Server:(.*?)\r\n/ =~ host.banner
         host.server = $1
-        /<title>(.*?)<\/title>/ =~ banner
+        /<title>(.*?)<\/title>/ =~ host.banner
         host.title = $1
 
         host.save
