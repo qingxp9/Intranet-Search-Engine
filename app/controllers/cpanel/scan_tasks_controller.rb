@@ -16,6 +16,7 @@ module Cpanel
     def create
       @scan_task = ScanTask.new(scan_task_params)
       @scan_task.status = "new"
+      @scan_task.describe = "outer" if @scan_task.describe == ""
 
       respond_to do |format|
         if @scan_task.save
