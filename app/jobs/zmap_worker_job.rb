@@ -1,8 +1,8 @@
 class ZmapWorkerJob < ActiveJob::Base
   queue_as :default
 
-  def perform( name, ip, port, filename )
-      if name == "outer"
+  def perform( describe, ip, port, filename )
+      if describe == "outer"|""
         filepath = "#{ZMAP_LOG_PATH}/outer/#{filename}"
 
         `zmap -p #{port} -b plugins/zmap/blacklist.conf #{ip} -o - | zgrab --port #{port} --data=plugins/zmap/http-req --output-file=#{filepath}`

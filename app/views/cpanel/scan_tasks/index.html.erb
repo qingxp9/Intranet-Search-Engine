@@ -9,7 +9,8 @@
       <th>Targets</th>
       <th>Ports</th>
       <th>Describe</th>
-      <th>Time</th>
+      <th>Created_at</th>
+      <th>Updated_at</th>
       <th>Output</th>
       <th>Status</th>
       <th colspan="3"></th>
@@ -23,12 +24,13 @@
         <td><%= scan_task.targets %></td>
         <td><%= scan_task.ports %></td>
         <td><%= scan_task.describe %></td>
-        <td><%= scan_task.time %></td>
+        <td><%= scan_task.created_at %></td>
+        <td><%= scan_task.updated_at %></td>
         <td><%= scan_task.output %></td>
         <td><%= scan_task.status %></td>
-        <td><%= link_to 'Show', scan_task %></td>
+        <td><%= link_to 'Show', [:cpanel,scan_task] %></td>
         <td><%= link_to 'Edit', edit_cpanel_scan_task_path(scan_task) %></td>
-        <td><%= link_to 'Destroy', scan_task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', [:cpanel,scan_task], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

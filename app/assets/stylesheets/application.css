@@ -521,3 +521,11 @@ em {
 h1, h2, h3, h4, h5 {
   color: #3ed3ff;
 }
+
+.btn-right {
+  float: right;
+}
+
+select {
+  color: #222;
+}

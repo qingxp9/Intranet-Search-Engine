@@ -16,8 +16,13 @@
 </p>
 
 <p>
-  <strong>Time:</strong>
-  <%= @scan_task.time %>
+  <strong>Created_at</strong>
+  <%= @scan_task.created_at %>
+</p>
+
+<p>
+  <strong>Updated_at</strong>
+  <%= @scan_task.updated_at %>
 </p>
 
 <p>
@@ -30,5 +35,5 @@
   <%= @scan_task.status %>
 </p>
 
-<%= link_to 'Edit', edit_scan_task_path(@scan_task) %> |
-<%= link_to 'Back', scan_tasks_path %>
+<%= link_to 'Edit', edit_cpanel_scan_task_path(@scan_task) %> |
+<%= link_to 'Back', cpanel_scan_tasks_path %>
