@@ -6,14 +6,15 @@ class ZmapWorkerJob < ActiveJob::Base
         filepath = "#{ZMAP_LOG_PATH}/outer/#{filename}"
 
         `zmap -p #{port} -b plugins/zmap/blacklist.conf #{ip} -o - | zgrab --port #{port} --data=plugins/zmap/http-req --output-file=#{filepath}`
+        Host.zmap_read( filepath, port)
 
       else #inner
 
         filepath = "#{ZMAP_LOG_PATH}/inner/#{filename}"
 
         `zmap -p #{port} #{ip} -o - | zgrab --port #{port} --data=plugins/zmap/http-req --output-file=#{filepath}`
+        Intranet.zmap_read( filepath, port, describe)
       end
-      Host.zmap_read( filepath, port)
 
   end
 end

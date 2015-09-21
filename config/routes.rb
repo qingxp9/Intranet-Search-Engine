@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   namespace :cpanel do
     root 'home#index'
     get 'zmap' => 'zmap#index'
-    post 'zmap' => 'zmap#scan'
     resources :scan_tasks
   end
 
@@ -22,6 +21,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :intranets do
+    collection do
+      get :search
+    end
+  end
 
 
   # Example of regular route:

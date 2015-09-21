@@ -1,7 +1,8 @@
-class Host
+class Intranet
   include Mongoid::Document
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+  field :belong, type: String
   field :ip, type: String
   field :port, type: String
   field :check_time, type: DateTime
@@ -10,43 +11,44 @@ class Host
   field :banner, type: String
 
   def as_indexed_json(options={})
-    as_json(only: [:ip, :port, :server, :title, :banner])
+    as_json(only: [:ip, :port, :server, :title, :belong, :banner])
   end
 
-  def self.zmap_read(filepath, port)
+  def self.zmap_read(filepath, port, belong)
     parsed_num = 0
     begintime = Time.now
 
-      File.readlines(filepath).each do |line|
-        begin
-          line_hash = JSON.parse line
-        rescue
-          next
-        end
-
-        next if line_hash["error"]
-
-        #find a old one
-        find = Host.where(ip: line_hash["ip"], port: port).first
-        host = find ? find : Host.new
-
-        host.ip = line_hash["ip"]
-        host.port = port
-        host.check_time = Time.now
-        host.banner = line_hash["data"]["read"]
-
-        #Regular identify
-        /Server:(.*?)\r\n/ =~ host.banner
-        host.server = $1
-        /<title>(.*?)<\/title>/ =~ host.banner
-        host.title = $1
-
-        host.save
-
-        #output the process number
-        parsed_num += 1
-        puts parsed_num if parsed_num % 100 == 0
+    File.readlines(filepath).each do |line|
+      begin
+        line_hash = JSON.parse line
+      rescue
+        next
       end
+
+      next if line_hash["error"]
+
+      #find a old one
+      find = Intranet.where(ip: line_hash["ip"], port: port, belong: belong).first
+      intranet = find ? find : Intranet.new
+
+      intranet.ip = line_hash["ip"]
+      intranet.port = port
+      intranet.belong = belong
+      intranet.check_time = Time.now
+      intranet.banner = line_hash["data"]["read"]
+
+      #Regular identify
+      /Server:(.*?)\r\n/ =~ intranet.banner
+      intranet.server = $1
+      /<title>(.*?)<\/title>/ =~ intranet.banner
+      intranet.title = $1
+
+      intranet.save
+
+      #output the process number
+      parsed_num += 1
+      puts parsed_num if parsed_num % 100 == 0
+    end
 
     tastetime = Time.now() - begintime
     puts "Intranet import #{parsed_num} ,Cost time: #{tastetime}"
