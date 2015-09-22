@@ -1,0 +1,40 @@
+<ul class="result device">
+<% intranets.each do |intranet| %>
+  <li>
+    <h3>
+      <a class="title" href="http://<%= intranet.ip %>"><%= intranet.title ? intranet.title : intranet.ip %></a>
+    </h3>
+
+    <hr>
+    <article class="port">
+      <ul class="tags">
+        <li class="belong">
+          <a href=""><%= intranet.belong %></a>
+        </li>
+        <li class="ip">
+          <a href=""><%= intranet.ip %></a>
+        </li>
+        <% if intranet.server %>
+        <li class="server">
+          <a href=""><%= intranet.server %></a>
+        </li>
+        <% end %>
+      </ul>
+      <div class="timestamp">
+          <i class="iconfont icon-time"></i>
+          <span>Added on <%= intranet.check_time.strftime('%m.%d.%Y')%></span>
+      </div>
+    </article>
+
+    <section class="banner">
+        <header>
+          <i><%= intranet.port %></i>
+          <s>http</s>
+        </header>
+        <pre class="expand">
+<%= intranet.banner %>
+        </pre>
+    </section>
+  </li>
+<% end %>
+</ul>

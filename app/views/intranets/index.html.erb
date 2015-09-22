@@ -8,9 +8,9 @@
         <%= render partial: "sidebar" %>
 
         <div class="result-list">
-          <% if @hosts.count != 0 %>
+          <% if @intranets.count != 0 %>
             <div class="result-summary">
-               <p>找到<strong><%= @hosts.count %></strong>条结果(<%= @waste_time %>秒)
+               <p>找到<strong><%= @intranets.count %></strong>条结果
             </div>
           <% else %>
             <ul class="result web">
@@ -22,9 +22,9 @@
 
           <% end %>
 
-          <%= render partial: "hosts", locals: { hosts: @hosts} %>
+          <%= render partial: "intranets", locals: { intranets: @intranets} %>
           <div class="clearfix"></div>
-          <%= paginate @hosts %>
+          <%= paginate @intranets %>
         </div>
       </div>
     </div><!--/row-->
