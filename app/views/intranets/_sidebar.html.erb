@@ -5,7 +5,7 @@
         <% Intranet.all.map{|a| a.belong }.uniq.each do |t| %>
             <li class="clearfix">
             <span><%= t %></span>
-            <%= link_to t, controller: 'controller', action: 'search', q: "belong: #{t}" %>
+            <%= link_to t, controller: 'intranet', action: 'search', q: "belong: #{t}" %>
             </li>
         <% end %>
         </ul>
