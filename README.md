@@ -41,6 +41,9 @@ execute:
 
     rake environment elasticsearch:import:all
 
+    bundle exec rake environment elasticsearch:import:model CLASS='Intranet' FORCE=y
+    bundle exec rake environment elasticsearch:import:model CLASS='Host' FORCE=y
+
 
 ###4.ZMap
 
