@@ -21,7 +21,7 @@ module Cpanel
       respond_to do |format|
         if @scan_task.save
           zmap_scan(@scan_task) if @scan_task.tool == "zmap"
-          format.html { render :show }
+          format.html { redirect_to [:cpanel,@scan_task] }
         else
           format.html { render :new }
         end
@@ -63,7 +63,7 @@ module Cpanel
           task.output << filename
           task.save
           ZmapWorkerJob.perform_later(
-            task.describe, task.targets.join(" "), port, filename
+            task.describe, task.targets.join(" "), port, filename, task.id.to_s
           )
         end
       end

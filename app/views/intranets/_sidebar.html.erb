@@ -4,7 +4,6 @@
         <ul class="bar-filter filter-service finished">
         <% Intranet.all.map{|a| a.belong }.uniq.each do |t| %>
             <li class="clearfix">
-            <span><%= t %></span>
             <%= link_to t, controller: 'intranets', action: 'search', q: "belong:#{t}" %>
             </li>
         <% end %>

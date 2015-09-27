@@ -20,7 +20,6 @@ gem "whenever", :require => false
 gem 'simple_form'
 gem 'kaminari'
 
-#gem 'sidekiq'
 gem 'devise'
 
 gem 'oneapm_rpm'

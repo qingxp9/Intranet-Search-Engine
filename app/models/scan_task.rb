@@ -8,6 +8,7 @@ class ScanTask
   field :describe, type: String
   field :output, type: Array, default: []
   field :status, type: String
+  field :logs, type: Array, default: []
 
   def targets_list=(arg)
     self.targets = arg.split(/[,| ]/)

@@ -1,19 +1,33 @@
+<div class="container"
 <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Targets:</strong>
-  <%= @scan_task.targets %>
+  <%= @scan_task.targets.join(", ") %>
 </p>
 
 <p>
   <strong>Ports:</strong>
-  <%= @scan_task.ports %>
+  <%= @scan_task.ports.join(", ") %>
 </p>
 
 <p>
   <strong>Describe:</strong>
   <%= @scan_task.describe %>
 </p>
+
+
+<p>
+  <strong>Status:</strong>
+  <%= @scan_task.status %>
+</p>
+
+<p>
+  <strong>Output:</strong>
+<%= @scan_task.output.join(",") %>
+</p>
+
+<hr>
 
 <p>
   <strong>Created_at</strong>
@@ -25,15 +39,12 @@
   <%= @scan_task.updated_at %>
 </p>
 
-<p>
-  <strong>Output:</strong>
-  <%= @scan_task.output %>
-</p>
+<pre class="task_logs">
+<%= @scan_task.logs.join("\n") %>
+</pre>
 
-<p>
-  <strong>Status:</strong>
-  <%= @scan_task.status %>
-</p>
+<hr>
 
 <%= link_to 'Edit', edit_cpanel_scan_task_path(@scan_task) %> |
 <%= link_to 'Back', cpanel_scan_tasks_path %>
+</div>
