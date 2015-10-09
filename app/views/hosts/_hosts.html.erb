@@ -1,4 +1,4 @@
-<ul class="result device">
+<ul class="result device" id="results">
 <% hosts.each do |host| %>
   <li>
     <h3>
@@ -35,3 +35,10 @@
   </li>
 <% end %>
 </ul>
+
+<% if @keywords %>
+  <script type="text/javascript">
+    var myHilitor = new Hilitor("results");
+    myHilitor.apply("<%= @keywords.join " " %>");
+  </script>
+<% end %>

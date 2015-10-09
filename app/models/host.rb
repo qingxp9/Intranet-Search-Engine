@@ -13,11 +13,11 @@ class Host
     as_json(only: [:ip, :port, :server, :title, :banner])
   end
 
-  def self.zmap_read(filepath, port)
+  def self.zmap_read(pathname, port)
     parsed_num = 0
     begintime = Time.now
 
-      File.readlines(filepath).each do |line|
+      File.readlines(pathname).each do |line|
         begin
           line_hash = JSON.parse line
         rescue

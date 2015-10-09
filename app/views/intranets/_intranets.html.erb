@@ -1,4 +1,4 @@
-<ul class="result device">
+<ul class="result device" id="results">
 <% intranets.each do |intranet| %>
   <li>
     <h3>
@@ -38,3 +38,10 @@
   </li>
 <% end %>
 </ul>
+
+<% if @keywords %>
+  <script type="text/javascript">
+    var myHilitor = new Hilitor("results");
+    myHilitor.apply("<%= @keywords.join " " %>");
+  </script>
+<% end %>

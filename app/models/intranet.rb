@@ -14,11 +14,11 @@ class Intranet
     as_json(only: [:ip, :port, :server, :title, :belong, :banner])
   end
 
-  def self.zmap_read(filepath, port, belong)
+  def self.zmap_read(pathname, port, belong)
     parsed_num = 0
     begintime = Time.now
 
-    File.readlines(filepath).each do |line|
+    File.readlines(pathname).each do |line|
       begin
         line_hash = JSON.parse line
       rescue
