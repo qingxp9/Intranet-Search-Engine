@@ -43,7 +43,7 @@ module Cpanel
     def destroy
       @scan_task.destroy
       respond_to do |format|
-        format.html { redirect_to cpanel_scan_tasks_url, notice: 'Scan task was successfully destroyed.' }
+        format.html { redirect_to :back, notice: 'Scan task was successfully destroyed.' }
         format.json { head :no_content }
       end
     end

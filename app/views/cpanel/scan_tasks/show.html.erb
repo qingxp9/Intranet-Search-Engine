@@ -42,6 +42,7 @@
 <pre class="task_logs">
 <%= @scan_task.logs.join("\n") %>
 </pre>
+<%= button_tag "Refresh",  onclick: "history.go(0)", class: "btn btn-info btn-default", style: "float: right"%>
 
 <hr>
 
