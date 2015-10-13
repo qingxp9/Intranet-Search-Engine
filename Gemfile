@@ -4,6 +4,11 @@ source 'https://ruby.taobao.org'
 gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 
+#mongoid
+gem "mongoid", "~> 4.0.0"
+
+gem 'redis'
+
 #bootstrap
 gem "therubyracer"
 gem "less-rails"
@@ -14,15 +19,12 @@ gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
 
-gem 'redis'
-gem "mongoid", "~> 4.0.0"
 gem "whenever", :require => false
 gem 'simple_form'
 gem 'kaminari'
 
 gem 'devise'
 
-gem 'oneapm_rpm'
 gem 'rails', '4.2.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
