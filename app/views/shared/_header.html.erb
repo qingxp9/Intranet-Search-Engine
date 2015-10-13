@@ -8,11 +8,15 @@
             <li><%= link_to "Cpanel", cpanel_root_path %></li>
             <li><%= link_to "外网", hosts_path %></li>
             <li><%= link_to "Intranet", intranets_path %></li>
-         </ul>
-          <%#<ul class="nav navbar-nav navbar-right login-tip">%>
-            <%#<li><a href="">注册账号</a></li>%>
-            <%#<li><a href="">登录</a></li>%>
-          <%#</ul>%>
+          </ul>
+          <ul class="nav navbar-nav navbar-right login-tip">
+            <% if user_signed_in? %>
+                <%=  current_user.email %>
+                <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+            <% else %>
+                <%= link_to "Sign in", new_user_session_path%> or <%= link_to "Sign up", new_user_registration_path %>
+            <% end %>
+          </ul>
         </div>
 
     </div>
