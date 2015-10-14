@@ -59,7 +59,7 @@ module Cpanel
 
       def zmap_scan(task)
         task.ports.each do |port|
-          filename = "#{Time.now.strftime('%Y%m%d')}-#{task.describe}-#{rand(10000...100000)}-#{port}.log"
+          filename = "#{Time.now.strftime('%Y%m%d')}-#{task.describe}-#{port}-#{rand(1000...10000)}.log"
           task.output << filename
           task.save
           ZmapWorkerJob.perform_later(

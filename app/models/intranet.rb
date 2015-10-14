@@ -65,7 +65,8 @@ class Intranet
          { match: { banner: x}},
          { match: { title: x}},
          { match: { belong: x}},
-         { match: { ip: x}}
+         { match: { ip: x}},
+         { match: { port: x}}
        ]
      elsif x.split(":").first == "ip"
          #if x.count("/") == 0
