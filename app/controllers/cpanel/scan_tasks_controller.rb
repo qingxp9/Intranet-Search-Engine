@@ -3,7 +3,7 @@ module Cpanel
     before_action :set_scan_task, only: [:show, :edit, :update, :destroy]
 
     def index
-      @scan_tasks = ScanTask.all
+      @scan_tasks = ScanTask.order_by(created_at: 'desc')
     end
     def show
     end

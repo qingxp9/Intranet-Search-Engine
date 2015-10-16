@@ -1,3 +1,4 @@
+<div class="container">
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Scan Tasks</h1>
@@ -9,7 +10,6 @@
       <th>Targets</th>
       <th>Ports</th>
       <th>Describe</th>
-      <th>Created_at</th>
       <th>Updated_at</th>
       <th>Output</th>
       <th>Status</th>
@@ -24,12 +24,10 @@
         <td><%= scan_task.targets %></td>
         <td><%= scan_task.ports %></td>
         <td><%= scan_task.describe %></td>
-        <td><%= scan_task.created_at %></td>
-        <td><%= scan_task.updated_at %></td>
+        <td><%= scan_task.Updated_at.strftime("%F %T") %></td>
         <td><%= scan_task.output %></td>
         <td><%= scan_task.status %></td>
         <td><%= link_to 'Show', [:cpanel,scan_task] %></td>
-        <td><%= link_to 'Edit', edit_cpanel_scan_task_path(scan_task) %></td>
         <td><%= link_to 'Destroy', [:cpanel,scan_task], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -39,3 +37,4 @@
 <br>
 
 <%= link_to 'New Scan task', new_cpanel_scan_task_path %>
+</div>
