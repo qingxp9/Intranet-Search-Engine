@@ -1,12 +1,10 @@
 <div class="container">
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Scan Tasks</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Tools</th>
+      <th>Types</th>
       <th>Targets</th>
       <th>Ports</th>
       <th>Describe</th>
@@ -20,7 +18,7 @@
   <tbody>
     <% @scan_tasks.each do |scan_task| %>
       <tr>
-        <td><%= scan_task.tool %></td>
+        <td><%= scan_task.type %></td>
         <td><%= scan_task.targets %></td>
         <td><%= scan_task.ports %></td>
         <td><%= scan_task.describe %></td>

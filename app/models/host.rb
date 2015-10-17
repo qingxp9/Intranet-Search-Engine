@@ -89,16 +89,6 @@ class Host
                 should: should_list,
                 must: must_list
               }
-            },
-            highlight: {
-              pre_tags: ['<em>'],
-              post_tags: ['</em>'],
-              fields: {
-                title: {},
-                ip: {},
-                banner: {},
-                server: {}
-              }
             }
           }
 

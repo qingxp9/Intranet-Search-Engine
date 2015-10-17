@@ -2,8 +2,8 @@
   <%= f.error_notification %>
 
     <div class="form-group string optional scan_task_tool">
-      <%= label_tag :tool, "Tool:", class: "string optional control-label" %>
-      <%= f.select :tool, ["zmap","test"] %>
+      <%= label_tag :type, "Type:", class: "string optional control-label" %>
+      <%= f.select :type, ["zmap_banner_scan","zmap_host_scan"] %>
     </div>
     <%= f.input :targets_list, placeholder: "10.0.1.1,192.168.10.0/24"%>
     <%= f.input :ports_list, placeholder: "22,80"%>

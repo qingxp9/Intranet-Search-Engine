@@ -2,7 +2,7 @@ class ScanTask
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :tool, type: String
+  field :type, type: String
   field :targets, type: Array, default: []
   field :ports, type: Array, default: []
   field :describe, type: String

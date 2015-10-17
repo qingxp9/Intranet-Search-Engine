@@ -10,32 +10,18 @@ module Cpanel
     def new
       @scan_task = ScanTask.new
     end
-    def edit
-    end
 
     def create
       @scan_task = ScanTask.new(scan_task_params)
       @scan_task.status = "new"
-      @scan_task.describe = "outer" if @scan_task.describe == ""
 
       respond_to do |format|
         if @scan_task.save
-          zmap_scan(@scan_task) if @scan_task.tool == "zmap"
+          zmap_worker(@scan_task) if @scan_task.type.include?("zmap")
+
           format.html { redirect_to [:cpanel,@scan_task] }
         else
           format.html { render :new }
-        end
-      end
-    end
-
-    def update
-      respond_to do |format|
-        if @scan_task.update(scan_task_params)
-          format.html { redirect_to @scan_task, notice: 'Scan task was successfully updated.' }
-          format.json { render :show, status: :ok, location: @scan_task }
-        else
-          format.html { render :edit }
-          format.json { render json: @scan_task.errors, status: :unprocessable_entity }
         end
       end
     end
@@ -54,18 +40,11 @@ module Cpanel
       end
 
       def scan_task_params
-        params.require(:scan_task).permit(:tool, :targets_list, :ports_list, :describe)
+        params.require(:scan_task).permit(:type, :targets_list, :ports_list, :describe)
       end
 
-      def zmap_scan(task)
-        task.ports.each do |port|
-          filename = "#{Time.now.strftime('%Y%m%d')}-#{task.describe}-#{port}-#{rand(1000...10000)}.log"
-          task.output << filename
-          task.save
-          ZmapWorkerJob.perform_later(
-            task.describe, task.targets.join(" "), port, filename, task.id.to_s
-          )
-        end
+      def zmap_worker(task)
+          ZmapWorkerJob.perform_later(task.id.to_s)
       end
   end
 end
