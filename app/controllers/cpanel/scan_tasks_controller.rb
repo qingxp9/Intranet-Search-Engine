@@ -23,7 +23,7 @@ module Cpanel
           zmap_worker(@scan_task) if @scan_task.type.include?("zmap")
 
           format.html { redirect_to [:cpanel,@scan_task] }
-          format.json { render json:  {"path": url_helpers.cpanel_scan_task_path(@scan_task)+".json", "id": @scan_task.id.to_s} }
+          format.json { render json:  {"path": url_helpers.cpanel_scan_task_path(@scan_task, format: :json), "id": @scan_task.id.to_s} }
         else
           format.html { render :new }
         end
