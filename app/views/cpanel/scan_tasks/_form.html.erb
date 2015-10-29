@@ -3,7 +3,7 @@
 
     <div class="form-group string optional scan_task_tool">
       <%= label_tag :type, "Type:", class: "string optional control-label" %>
-      <%= f.select :type, ["zmap_banner_scan","zmap_host_scan"] %>
+      <%= f.select :type, ["zmap_port_scan", "zmap_port_scan_import" ] %>
     </div>
     <%= f.input :targets_list, placeholder: "10.0.1.1,192.168.10.0/24"%>
     <%= f.input :ports_list, placeholder: "22,80"%>

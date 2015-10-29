@@ -6,25 +6,10 @@
     <div class="row">
       <div class="col-lg-12">
         <%= render partial: "sidebar" %>
-
         <div class="result-list">
-          <% if @intranets.count != 0 %>
-            <div class="result-summary">
-               <p>找到<strong><%= @intranets.count %></strong>条结果
-            </div>
-          <% else %>
-            <ul class="result web">
-            <div class="info-not-found">
-              <h1 class="text-muted">抱歉，没有找到结果。</h1>
-            <p class="lead">您的查询没有匹配到结果。请尝试检查语法或搜索其他内容。</p>
-            </div>
-            </ul>
-
+          <% Intranet.all.map{|a| a.belong }.uniq.each do |t| %>
+              <%= link_to t, controller: 'intranets', action: 'search', q: "belong:#{t}" %>
           <% end %>
-
-          <%= render partial: "intranets", locals: { intranets: @intranets} %>
-          <div class="clearfix"></div>
-          <%= paginate @intranets %>
         </div>
       </div>
     </div><!--/row-->

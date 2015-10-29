@@ -8,7 +8,6 @@ class IntranetsController < ApplicationController
     begin_time = Time.now
     @keywords = params[:q].split.delete_if {|a|  a.count(":") != 0 }
     @intranets = Intranet.search(params[:q]).records.page(params[:page]).per(30)
-    render 'index'
   end
 
 end

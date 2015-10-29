@@ -2,6 +2,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Type:</strong>
+  <%= @scan_task.type %>
+</p>
+
+<p>
   <strong>Targets:</strong>
   <%= @scan_task.targets.join(", ") %>
 </p>
@@ -27,17 +32,11 @@
 <%= @scan_task.output.join(",") %>
 </p>
 
-<hr>
-
-<p>
-  <strong>Created_at</strong>
-  <%= @scan_task.created_at %>
-</p>
-
 <p>
   <strong>Updated_at</strong>
   <%= @scan_task.updated_at %>
 </p>
+<hr>
 
 <pre class="task_logs">
 <%= @scan_task.logs.join("\n") %>

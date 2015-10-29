@@ -6,13 +6,13 @@ class ZmapWorkerJob < ActiveJob::Base
     task = ScanTask.find(task_id)
     ##different scan task
     task.update( status: "scan" )
-    zmap_host_scan(task) if task.type == "zmap_host_scan"
-    zmap_banner_scan(task) if task.type == "zmap_banner_scan"
+    zmap_port_scan(task) if task.type == "zmap_port_scan"
+    zmap_port_scan_import(task) if task.type == "zmap_port_scan_import"
     ##deal finish
     task.update( status: "finish")
   end
 
-  def zmap_banner_scan(task)
+  def zmap_port_scan_import(task)
     logs = []
     task.ports.each do |port|
       task.describe = "outer" if task.describe == ""
@@ -23,7 +23,7 @@ class ZmapWorkerJob < ActiveJob::Base
       if task.describe == "outer"
 
         pathname = "#{ZMAP_LOG_PATH}/banner/outer/#{filename}"
-        command = "zmap -p #{port} -b plugins/zmap/blacklist.conf #{task.targets.join(" ")} -o - | zgrab --port #{port} --data=plugins/zmap/http-req --output-file=#{pathname}"
+        command = "zmap -p #{port} -b plugins/zmap/blacklist.conf #{task.targets.join(" ")} | zgrab --port #{port} --data=plugins/zmap/http-req --output-file=#{pathname}"
         logs << command
 
         Open3.popen3(command) do |stdin, stdout, stderr, thread|
@@ -45,7 +45,7 @@ class ZmapWorkerJob < ActiveJob::Base
       else #inner
 
         pathname = "#{ZMAP_LOG_PATH}/banner/inner/#{filename}"
-        command = "zmap -p #{port} #{task.targets.join(" ")} -o - | zgrab --port #{port} --data=plugins/zmap/http-req --output-file=#{pathname}"
+        command = "zmap -p #{port} #{task.targets.join(" ")} | zgrab --port #{port} --data=plugins/zmap/http-req --output-file=#{pathname}"
         logs << command
 
         Open3.popen3(command) do |stdin, stdout, stderr, thread|
@@ -67,27 +67,28 @@ class ZmapWorkerJob < ActiveJob::Base
     end
   end
 
-  def zmap_host_scan(task)
+  def zmap_port_scan(task)
     logs = []
     task.ports.each do |port|
-      filename = "#{Time.now.strftime('%Y%m%d')}-#{port}-#{rand(1000...10000)}.log"
-      task.output << filename
-      task.save
-
-      pathname = "#{ZMAP_LOG_PATH}/host/#{filename}"
-      command = "zmap -p #{port}  #{task.targets.join(" ")} -o #{pathname}"
-      logs << command
+      command = "zmap -p #{port} #{task.targets.join(" ")}| zgrab --port #{port} --data=plugins/zmap/http-req"
 
       Open3.popen3(command) do |stdin, stdout, stderr, thread|
-        num = 0
-        while line=stderr.gets do
-          num+=1
-          logs << line
-          task.update( logs: logs) if num % 5 == 0
-        end
-
         while line=stdout.gets do
-          logs << line
+          begin
+            hash=JSON.parse(line)
+          rescue
+            next
+          end
+
+          next if !hash["error"].nil?
+          next if hash["ip"].nil?
+
+          title  = hash["data"]["read"].match(/<title>(.*?)<\/title>/)
+          title  = title.nil? ? nil : title[1]
+          server = hash["data"]["read"].match(/Server:(.*?)\r\n/)
+          server = server.nil? ? nil : server[1]
+
+          logs << {"ip":hash["ip"],"title":title,"server":server}
         end
       end
 
