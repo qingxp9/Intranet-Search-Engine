@@ -38,6 +38,10 @@
 </p>
 <hr>
 
+<p>
+  <strong>Count:</strong>
+  <%= @scan_task.logs.count %>
+</p>
 <pre class="task_logs">
 <%= @scan_task.logs.join("\n") %>
 </pre>
