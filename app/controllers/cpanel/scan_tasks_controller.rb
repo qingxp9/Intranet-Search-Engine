@@ -1,5 +1,6 @@
 module Cpanel
   class ScanTasksController < ApplicationController
+    delegate :url_helpers, to: 'Rails.application.routes'
     before_action :set_scan_task, only: [:show, :edit, :update, :destroy]
     skip_before_action :verify_authenticity_token
     skip_before_action :authenticate_user!, only: [:show, :create]
@@ -22,7 +23,7 @@ module Cpanel
           zmap_worker(@scan_task) if @scan_task.type.include?("zmap")
 
           format.html { redirect_to [:cpanel,@scan_task] }
-          format.json { render json: {"id": @scan_task.id.to_s} }
+          format.json { render json:  {"path": url_helpers.cpanel_scan_task_path(@scan_task)+".json", "id": @scan_task.id.to_s} }
         else
           format.html { render :new }
         end

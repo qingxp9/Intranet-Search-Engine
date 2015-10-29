@@ -4,11 +4,19 @@ class ZmapWorkerJob < ActiveJob::Base
 
   def perform(task_id)
     task = ScanTask.find(task_id)
+
     ##different scan task
     task.update( status: "scan" )
-    zmap_port_scan(task) if task.type == "zmap_port_scan"
-    zmap_port_scan_import(task) if task.type == "zmap_port_scan_import"
-    ##deal finish
+    case task.type
+    when "zmap_port_scan"
+      zmap_port_scan(task)
+    when "zmap_port_scan_import"
+      zmap_port_scan_import(task)
+    else
+      task.update( status: "type error")
+      return
+    end
+
     task.update( status: "finish")
   end
 

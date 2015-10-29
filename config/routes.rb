@@ -12,7 +12,6 @@ Rails.application.routes.draw do
 
   namespace :cpanel do
     root 'home#index'
-    get 'zmap' => 'zmap#index'
     resources :scan_tasks
   end
 
