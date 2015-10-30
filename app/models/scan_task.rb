@@ -25,4 +25,12 @@ class ScanTask
   def ports_list
     self.ports.join ", "
   end
+
+  def to_csv
+    CSV.generate do |csv|
+      self.logs.map{|t| t["ip"]}.each do |item|
+        csv << item.split
+      end
+    end
+  end
 end
