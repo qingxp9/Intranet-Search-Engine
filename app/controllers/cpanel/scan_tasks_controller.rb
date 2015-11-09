@@ -7,6 +7,7 @@ module Cpanel
     def index
       @scan_tasks = ScanTask.order_by(created_at: 'desc')
     end
+
     def show
       respond_to do |format|
         format.html
@@ -14,6 +15,7 @@ module Cpanel
         format.csv { send_data @scan_task.to_csv }
       end
     end
+
     def new
       @scan_task = ScanTask.new
     end
@@ -21,6 +23,8 @@ module Cpanel
     def create
       @scan_task = ScanTask.new(scan_task_params)
       @scan_task.status = "new"
+      @scan_task.targets = params.require(:scan_task)[:targets].split(/[,| ]/)
+      @scan_task.ports = params.require(:scan_task)[:ports].split(/[,| ]/)
 
       respond_to do |format|
         if @scan_task.save
@@ -30,6 +34,7 @@ module Cpanel
           format.json { render json:  {"path": cpanel_scan_task_path(@scan_task, format: :json), "id": @scan_task.id.to_s} }
         else
           format.html { render :new }
+          format.json { render json: { errors: @scan_task.errors } }
         end
       end
     end
@@ -48,7 +53,7 @@ module Cpanel
       end
 
       def scan_task_params
-        params.require(:scan_task).permit(:type, :targets_list, :ports_list, :describe)
+        params.require(:scan_task).permit(:type,  :describe)
       end
 
       def zmap_worker(task)
