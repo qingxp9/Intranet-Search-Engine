@@ -84,7 +84,7 @@ class Intranet
     end
 
     tmp = {
-            size: 50,
+            size: 100,
             query: {
               bool: {
                 should: should_list,
