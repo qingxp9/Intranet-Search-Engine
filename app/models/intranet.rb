@@ -62,9 +62,7 @@ class Intranet
      if x.count(":") == 0
        should_list = [
          { match: { server: x}},
-         { match: { banner: x}},
          { match: { title: x}},
-         { match: { belong: x}},
          { match: { ip: x}},
          { match: { port: x}}
        ]
