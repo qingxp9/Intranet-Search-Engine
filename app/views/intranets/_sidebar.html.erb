@@ -2,11 +2,9 @@
     <div class="hidden-print hidden-xs">
         <h3 class="filter-title-service">Origanization</h3>
         <ul class="bar-filter filter-service finished">
-        <% Intranet.all.map{|a| a.belong }.uniq.each do |t| %>
-            <li class="clearfix">
-            <%= link_to t, controller: 'intranets', action: 'search', q: "belong:#{t}" %>
-            </li>
-        <% end %>
+          <li class="clearfix">
+          <%= link_to "360", controller: 'intranets', action: 'search', q: "belong:360" %>
+          </li>
         </ul>
     </div>
 </div>

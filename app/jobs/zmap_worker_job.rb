@@ -7,6 +7,7 @@ class ZmapWorkerJob < ActiveJob::Base
 
     ##different scan task
     task.update( status: "scan" )
+    begin_time = Time.now
     case task.type
     when "zmap_port_scan"
       zmap_port_scan(task)
@@ -17,7 +18,7 @@ class ZmapWorkerJob < ActiveJob::Base
       return
     end
 
-    task.update( status: "finish")
+    task.update( status: "finish", scan_cost: (Time.now - begin_time))
   end
 
   def zmap_port_scan_import(task)

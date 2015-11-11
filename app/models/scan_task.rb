@@ -9,6 +9,7 @@ class ScanTask
   field :output, type: Array, default: []
   field :status, type: String
   field :logs, type: Array, default: []
+  field :scan_cost, type: DateTime
 
   validates :type, presence: true
   validates :targets, presence: true
