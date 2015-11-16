@@ -2,7 +2,7 @@ module Cpanel
   class ScanTasksController < ApplicationController
     before_action :set_scan_task, only: [:show, :edit, :update, :destroy]
     skip_before_action :verify_authenticity_token
-    skip_before_action :authenticate_user!, only: [:show, :create, :destroy]
+    skip_before_action :authenticate_user!, only: [:show, :create, :destroy, :index]
 
     def index
       @scan_tasks = ScanTask.order_by(created_at: 'desc')
