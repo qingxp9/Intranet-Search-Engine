@@ -42,6 +42,10 @@
   <strong>Count:</strong>
   <%= @scan_task.logs.count %>
 </p>
+<p>
+  <strong>Scan Cost:</strong>
+  <%= @scan_task.scan_cost %>
+</p>
 <pre class="task_logs">
 <%= @scan_task.logs.join("\n") %>
 </pre>

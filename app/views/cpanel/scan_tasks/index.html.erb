@@ -9,8 +9,9 @@
       <th>Ports</th>
       <th>Describe</th>
       <th>Updated_at</th>
-      <th>Output</th>
       <th>Status</th>
+      <th>Scan_cost</th>
+      <th>Count</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,8 +24,9 @@
         <td><%= scan_task.ports %></td>
         <td><%= scan_task.describe %></td>
         <td><%= scan_task.updated_at.strftime("%F %T") %></td>
-        <td><%= scan_task.output %></td>
         <td><%= scan_task.status %></td>
+        <td><%= scan_task.scan_cost %></td>
+        <td><%= scan_task.logs.count %></td>
         <td><%= link_to 'Show', [:cpanel,scan_task] %></td>
         <td><%= link_to 'Destroy', [:cpanel,scan_task], method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

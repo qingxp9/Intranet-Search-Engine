@@ -7,12 +7,13 @@ class ZmapWorkerJob < ActiveJob::Base
 
     ##different scan task
     task.update( status: "scan" )
+    bandwidth = "10M"
     begin_time = Time.now
     case task.type
     when "zmap_port_scan"
-      zmap_port_scan(task)
+      zmap_port_scan(task, bandwidth)
     when "zmap_port_scan_import"
-      zmap_port_scan_import(task)
+      zmap_port_scan_import(task, bandwidth)
     else
       task.update( status: "type error")
       return
@@ -21,7 +22,7 @@ class ZmapWorkerJob < ActiveJob::Base
     task.update( status: "finish", scan_cost: (Time.now - begin_time))
   end
 
-  def zmap_port_scan_import(task)
+  def zmap_port_scan_import(task, bandwidth)
     logs = []
     task.ports.each do |port|
       task.describe = "outer" if task.describe == ""
@@ -54,7 +55,7 @@ class ZmapWorkerJob < ActiveJob::Base
       else #inner
 
         pathname = "#{ZMAP_LOG_PATH}/banner/inner/#{filename}"
-        command = "zmap -p #{port} #{task.targets.join(" ")} | zgrab --port #{port} --data=plugins/zmap/http-req --output-file=#{pathname}"
+        command = "zmap -B #{bandwidth} -p #{port} #{task.targets.join(" ")} | zgrab --port #{port} --data=plugins/zmap/http-req --output-file=#{pathname}"
         logs << command
 
         Open3.popen3(command) do |stdin, stdout, stderr, thread|
@@ -76,10 +77,10 @@ class ZmapWorkerJob < ActiveJob::Base
     end
   end
 
-  def zmap_port_scan(task)
+  def zmap_port_scan(task, bandwidth)
     logs = []
     task.ports.each do |port|
-      command = "zmap -p #{port} #{task.targets.join(" ")}| zgrab --port #{port} --data=plugins/zmap/http-req"
+      command = "zmap -B #{bandwidth} -p #{port} #{task.targets.join(" ")}| zgrab --port #{port} --data=plugins/zmap/http-req"
 
       Open3.popen3(command) do |stdin, stdout, stderr, thread|
         while line=stdout.gets do

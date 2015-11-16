@@ -4,4 +4,5 @@ json.array!(@scan_tasks) do |scan_task|
   json.updated_at scan_task.updated_at.strftime("%F %T")
   json.url cpanel_scan_task_path(scan_task, format: :json)
   json.count scan_task.logs.count
+  json.scan_cost scan_task.scan_cost
 end

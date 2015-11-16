@@ -2,7 +2,7 @@ module Cpanel
   class ScanTasksController < ApplicationController
     before_action :set_scan_task, only: [:show, :edit, :update, :destroy]
     skip_before_action :verify_authenticity_token
-    skip_before_action :authenticate_user!, only: [:show, :create]
+    skip_before_action :authenticate_user!, only: [:show, :create, :destroy]
 
     def index
       @scan_tasks = ScanTask.order_by(created_at: 'desc')
@@ -43,7 +43,7 @@ module Cpanel
       @scan_task.destroy
       respond_to do |format|
         format.html { redirect_to :back, notice: 'Scan task was successfully destroyed.' }
-        format.json { head :no_content }
+        format.json { render json: { status: 1 } }
       end
     end
 
